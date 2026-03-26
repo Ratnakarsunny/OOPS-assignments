@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+// Base class
+class A {
+public:
+    void showA() {
+        cout << "This is class A" << endl;
+    }
+};
+
+// Derived class B (virtual inheritance)
+class B : virtual public A {
+public:
+    void showB() {
+        cout << "This is class B" << endl;
+    }
+};
+
+// Derived class C (virtual inheritance)
+class C : virtual public A {
+public:
+    void showC() {
+        cout << "This is class C" << endl;
+    }
+};
+
+// Derived class D inheriting from B and C
+class D : public B, public C {
+public:
+    void showD() {
+        cout << "This is class D" << endl;
+    }
+};
+
+int main() {
+    D obj;
+
+    obj.showA(); // No ambiguity due to virtual inheritance
+    obj.showB();
+    obj.showC();
+    obj.showD();
+
+    return 0;
+}
