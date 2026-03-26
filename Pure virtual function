@@ -1,0 +1,77 @@
+#include <iostream>
+using namespace std;
+
+// Abstract base class
+class Payment {
+public:
+    // Pure virtual function
+    virtual void pay(double amount) = 0;
+
+    // Another pure virtual function
+    virtual void generateReceipt() = 0;
+
+    // Virtual destructor (important)
+    virtual ~Payment() {}
+};
+
+// Derived class 1
+class CreditCard : public Payment {
+public:
+    void pay(double amount) override {
+        cout << "Paid " << amount << " using Credit Card" << endl;
+    }
+
+    void generateReceipt() override {
+        cout << "Receipt: Credit Card Payment" << endl;
+    }
+};
+
+// Derived class 2
+class UPI : public Payment {
+public:
+    void pay(double amount) override {
+        cout << "Paid " << amount << " using UPI" << endl;
+    }
+
+    void generateReceipt() override {
+        cout << "Receipt: UPI Payment" << endl;
+    }
+};
+
+// Derived class 3
+class Cash : public Payment {
+public:
+    void pay(double amount) override {
+        cout << "Paid " << amount << " using Cash" << endl;
+    }
+
+    void generateReceipt() override {
+        cout << "Receipt: Cash Payment" << endl;
+    }
+};
+
+int main() {
+    Payment* p;   // Base class pointer
+
+    CreditCard cc;
+    UPI upi;
+    Cash cash;
+
+    p = &cc;
+    p->pay(1000);
+    p->generateReceipt();
+
+    cout << endl;
+
+    p = &upi;
+    p->pay(500);
+    p->generateReceipt();
+
+    cout << endl;
+
+    p = &cash;
+    p->pay(200);
+    p->generateReceipt();
+
+    return 0;
+} lo
