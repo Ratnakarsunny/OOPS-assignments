@@ -1,0 +1,60 @@
+#include <iostream>
+using namespace std;
+
+// Base class
+class Account {
+public:
+    virtual void calculateInterest() {
+        cout << "Calculating general account interest" << endl;
+    }
+
+    virtual void display() {
+        cout << "This is a generic account" << endl;
+    }
+
+    // Virtual destructor (important in advanced programs)
+    virtual ~Account() {}
+};
+
+// Derived class 1
+class SavingsAccount : public Account {
+public:
+    void calculateInterest() override {
+        cout << "Savings Account Interest: 5%" << endl;
+    }
+
+    void display() override {
+        cout << "This is a Savings Account" << endl;
+    }
+};
+
+// Derived class 2
+class CurrentAccount : public Account {
+public:
+    void calculateInterest() override {
+        cout << "Current Account Interest: 2%" << endl;
+    }
+
+    void display() override {
+        cout << "This is a Current Account" << endl;
+    }
+};
+
+int main() {
+    Account* acc;   // Base class pointer
+
+    SavingsAccount s;
+    CurrentAccount c;
+
+    acc = &s;
+    acc->display();
+    acc->calculateInterest();
+
+    cout << endl;
+
+    acc = &c;
+    acc->display();
+    acc->calculateInterest();
+
+    return 0;
+}
